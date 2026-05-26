@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azzab Coding School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--navy:#0B1020;
+--indigo:#4F46E5;
+--purple:#7C3AED;
+--cyan:#06B6D4;
+--cyan-soft:#67E8F9;
+--lavender:#C4B5FD;
+--white:#F8FAFC;
+--gray:#CBD5E1;
+--slate:#94A3B8;
+--card-bg:rgba(255,255,255,0.04);
+--card-border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{
+background:#0B1020;
+color:#F8FAFC;
+font-family:'Manrope',sans-serif;
+min-height:100vh;
+overflow-x:hidden;
+}
+h1,h2,h3,h4,h5{font-family:'Outfit',sans-serif;line-height:1.15}
+
+/* ── NAVBAR ── */
+.navbar{
+position:fixed;top:0;left:0;right:0;z-index:1000;
+padding:1.25rem 2rem;
+display:flex;align-items:center;justify-content:space-between;
+transition:all .4s ease;
+}
+.navbar.scrolled{
+background:rgba(11,16,32,.85);
+backdrop-filter:blur(20px);
+border-bottom:1px solid rgba(255,255,255,.07);
+padding:.9rem 2rem;
+}
+.nav-brand{
+font-family:'Outfit',sans-serif;
+font-size:1.15rem;font-weight:700;
+background:linear-gradient(135deg,#67E8F9,#C4B5FD);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+cursor:pointer;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+color:#CBD5E1;font-size:.9rem;font-weight:500;
+text-decoration:none;cursor:pointer;transition:color .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:#F8FAFC}
+.nav-cta{
+background:linear-gradient(135deg,#4F46E5,#7C3AED);
+color:#fff;border:none;
+padding:.65rem 1.4rem;border-radius:999px;
+font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:600;
+cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:#F8FAFC;border-radius:2px;transition:all .3s}
+.mobile-menu{
+display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+background:rgba(11,16,32,.97);backdrop-filter:blur(20px);z-index:999;
+flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:600;
+color:#F8FAFC;text-decoration:none;cursor:pointer;
+}
+.mobile-close{
+position:absolute;top:1.5rem;right:2rem;
+background:none;border:none;color:#F8FAFC;font-size:2rem;cursor:pointer;
+}
+
+/* ── PAGES ── */
+.page{display:none;padding-top:80px}
+.page.active{display:block}
+
+/* ── SECTIONS ── */
+section{padding:5rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+
+/* ── HERO ── */
+.hero{
+min-height:calc(100vh - 80px);
+display:flex;align-items:center;
+position:relative;overflow:hidden;padding:5rem 2rem 4rem;
+}
+.hero-glow{
+position:absolute;top:-20%;left:50%;transform:translateX(-50%);
+width:900px;height:700px;
+background:radial-gradient(ellipse at center,rgba(79,70,229,.25) 0%,rgba(124,58,237,.12) 40%,transparent 70%);
+pointer-events:none;
+}
+.hero-glow2{
+position:absolute;bottom:-10%;right:-5%;
+width:500px;height:500px;
+background:radial-gradient(ellipse,rgba(6,182,212,.15) 0%,transparent 65%);
+pointer-events:none;
+}
+.hero-inner{
+max-width:1200px;margin:0 auto;width:100%;
+display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+}
+.hero-badge{
+display:inline-flex;align-items:center;gap:.5rem;
+background:rgba(79,70,229,.15);border:1px solid rgba(79,70,229,.3);
+padding:.4rem 1rem;border-radius:999px;
+font-size:.8rem;font-weight:600;color:#C4B5FD;margin-bottom:1.5rem;
+}
+.hero h1{
+font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;
+line-height:1.08;margin-bottom:1.25rem;
+}
+.grad-text{
+background:linear-gradient(135deg,#67E8F9 0%,#C4B5FD 50%,#7C3AED 100%);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero p{
+font-size:1.1rem;color:#CBD5E1;line-height:1.7;
+max-width:520px;margin-bottom:2.5rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+background:linear-gradient(135deg,#4F46E5,#7C3AED);
+color:#fff;border:none;padding:.85rem 2rem;border-radius:999px;
+font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:600;
+cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(79,70,229,.4)}
+.btn-outline{
+background:transparent;color:#F8FAFC;
+border:1px solid rgba(255,255,255,.2);
+padding:.85rem 2rem;border-radius:999px;
+font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:600;
+cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block;
+}
+.btn-outline:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+
+/* ── HERO VISUAL ── */
+.hero-visual{
+position:relative;display:flex;align-items:center;justify-content:center;
+}
+.hero-screen{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:20px;padding:1.5rem;width:100%;max-width:420px;
+backdrop-filter:blur(10px);
+box-shadow:0 30px 80px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.05);
+}
+.screen-bar{display:flex;gap:6px;margin-bottom:1rem}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.code-line{
+font-family:'Courier New',monospace;font-size:.8rem;
+padding:.2rem 0;line-height:1.6;
+}
+.cl-purple{color:#C4B5FD}.cl-cyan{color:#67E8F9}.cl-white{color:#F8FAFC}
+.cl-green{color:#86efac}.cl-orange{color:#fba272}.cl-gray{color:#94A3B8}
+.floating-tag{
+position:absolute;
+background:rgba(255,255,255,.08);backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.12);border-radius:12px;
+padding:.6rem 1rem;font-size:.8rem;font-weight:600;
+white-space:nowrap;
+}
+.tag1{top:-1rem;right:-2rem;color:#67E8F9}
+.tag2{bottom:2rem;left:-2.5rem;color:#C4B5FD}
+.tag3{top:40%;right:-2.5rem;color:#86efac;font-size:.75rem}
+
+/* ── SECTION LABELS ── */
+.section-label{
+display:inline-flex;align-items:center;gap:.5rem;
+font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+color:#7C3AED;margin-bottom:1rem;
+}
+.section-title{
+font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;
+margin-bottom:1rem;
+}
+.section-sub{color:#CBD5E1;font-size:1.05rem;line-height:1.7;max-width:600px}
+
+/* ── CARDS ── */
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;padding:2rem;
+transition:all .3s;
+}
+.card:hover{
+background:rgba(255,255,255,.07);
+border-color:rgba(255,255,255,.14);
+transform:translateY(-4px);
+}
+.card-icon{
+width:48px;height:48px;border-radius:14px;
+display:flex;align-items:center;justify-content:center;
+font-size:1.4rem;margin-bottom:1.25rem;
+}
+.card h3{font-size:1.1rem;font-weight:600;margin-bottom:.6rem}
+.card p{color:#94A3B8;font-size:.9rem;line-height:1.65}
+
+/* ── GRID ── */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+
+/* ── PROGRAM CARDS ── */
+.prog-card{
+border-radius:24px;padding:2rem;position:relative;overflow:hidden;
+border:1px solid rgba(255,255,255,.1);
+}
+.prog-card::before{
+content:'';position:absolute;top:0;right:0;
+width:180px;height:180px;border-radius:50%;
+opacity:.15;transform:translate(40%,-40%);
+}
+.prog-a{background:linear-gradient(135deg,rgba(6,182,212,.12),rgba(79,70,229,.08));}
+.prog-a::before{background:#06B6D4}
+.prog-b{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(196,181,253,.08));}
+.prog-b::before{background:#7C3AED}
+.prog-c{background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(6,182,212,.08));}
+.prog-c::before{background:#4F46E5}
+.prog-d{background:linear-gradient(135deg,rgba(134,239,172,.1),rgba(79,70,229,.08));}
+.prog-d::before{background:#86efac}
+.prog-age{
+display:inline-block;font-size:.75rem;font-weight:700;
+padding:.3rem .85rem;border-radius:999px;margin-bottom:1rem;
+}
+.prog-a .prog-age{background:rgba(6,182,212,.2);color:#67E8F9}
+.prog-b .prog-age{background:rgba(196,181,253,.2);color:#C4B5FD}
+.prog-c .prog-age{background:rgba(79,70,229,.2);color:#a5b4fc}
+.prog-d .prog-age{background:rgba(134,239,172,.2);color:#86efac}
+.prog-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
+.prog-card .prog-focus{color:#94A3B8;font-size:.88rem;margin-bottom:1.25rem;line-height:1.6}
+.prog-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.prog-tag{
+font-size:.72rem;font-weight:600;
+padding:.25rem .7rem;border-radius:999px;
+background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+color:#CBD5E1;
+}
+
+/* ── STEPS ── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;position:relative}
+.step{text-align:center;padding:2rem 1.5rem}
+.step-num{
+width:56px;height:56px;border-radius:50%;
+background:linear-gradient(135deg,#4F46E5,#7C3AED);
+display:flex;align-items:center;justify-content:center;
+font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:700;
+margin:0 auto 1.25rem;
+}
+.step h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
+.step p{color:#94A3B8;font-size:.88rem;line-height:1.6}
+
+/* ── PRICING ── */
+.pricing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.price-card{
+background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+border-radius:24px;padding:2.5rem;text-align:center;transition:all .3s;
+}
+.price-card.featured{
+background:linear-gradient(135deg,rgba(79,70,229,.18),rgba(124,58,237,.12));
+border-color:rgba(79,70,229,.4);
+}
+.price-card:hover{transform:translateY(-4px)}
+.price-plan{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94A3B8;margin-bottom:.75rem}
+.price-amount{font-family:'Outfit',sans-serif;font-size:3rem;font-weight:800;margin-bottom:.25rem}
+.price-amount span{font-size:1.2rem;font-weight:500;color:#94A3B8}
+.price-per{color:#94A3B8;font-size:.85rem;margin-bottom:2rem}
+.price-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+.price-features li{
+display:flex;align-items:center;gap:.6rem;
+font-size:.9rem;color:#CBD5E1;
+}
+.price-features li::before{content:'✓';color:#67E8F9;font-weight:700;flex-shrink:0}
+.price-badge{
+display:inline-block;background:rgba(6,182,212,.2);color:#67E8F9;
+font-size:.72rem;font-weight:700;padding:.3rem .8rem;border-radius:999px;
+margin-bottom:1rem;
+}
+
+/* ── ABOUT TIMELINE ── */
+.exp-item{
+display:flex;gap:1.5rem;padding:1.5rem 0;
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+.exp-item:last-child{border-bottom:none}
+.exp-dot{
+width:12px;height:12px;border-radius:50%;
+background:linear-gradient(135deg,#4F46E5,#7C3AED);
+flex-shrink:0;margin-top:.4rem;
+}
+.exp-content h4{font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.exp-content p{color:#94A3B8;font-size:.88rem;line-height:1.6}
+.exp-content .exp-tag{
+display:inline-block;font-size:.72rem;font-weight:600;
+color:#C4B5FD;background:rgba(196,181,253,.1);
+padding:.2rem .6rem;border-radius:999px;margin-bottom:.4rem;
+}
+
+/* ── FORM ── */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group.full{grid-column:1/-1}
+label{font-size:.82rem;font-weight:600;color:#CBD5E1}
+input,select,textarea{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:12px;padding:.8rem 1rem;
+color:#F8FAFC;font-family:'Manrope',sans-serif;font-size:.9rem;
+width:100%;transition:border-color .2s;outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:rgba(79,70,229,.6)}
+input::placeholder,textarea::placeholder{color:#64748B}
+select option{background:#1e2640;color:#F8FAFC}
+textarea{resize:vertical;min-height:100px}
+.form-submit{
+background:linear-gradient(135deg,#4F46E5,#7C3AED);
+color:#fff;border:none;padding:1rem 2.5rem;border-radius:999px;
+font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;
+cursor:pointer;transition:all .25s;margin-top:.5rem;
+}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(79,70,229,.4)}
+
+/* ── CTA SECTION ── */
+.cta-section{
+background:linear-gradient(135deg,rgba(79,70,229,.15),rgba(124,58,237,.1));
+border:1px solid rgba(79,70,229,.2);
+border-radius:32px;padding:5rem 3rem;text-align:center;margin:0 2rem;
+position:relative;overflow:hidden;
+}
+.cta-section::before{
+content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);
+width:600px;height:400px;
+background:radial-gradient(ellipse,rgba(79,70,229,.2) 0%,transparent 70%);
+pointer-events:none;
+}
+.cta-section h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:1.25rem;max-width:700px;margin-left:auto;margin-right:auto}
+.cta-section p{color:#CBD5E1;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* ── CONTACT ── */
+.contact-item{
+display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;
+background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+border-radius:16px;
+}
+.contact-icon{
+width:44px;height:44px;border-radius:12px;
+display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+background:linear-gradient(135deg,rgba(79,70,229,.3),rgba(124,58,237,.2));
+}
+.contact-item h4{font-weight:600;margin-bottom:.2rem;font-size:.95rem}
+.contact-item p{color:#94A3B8;font-size:.88rem}
+
+/* ── DIVIDER ── */
+.divider{width:60px;height:3px;background:linear-gradient(90deg,#4F46E5,#7C3AED);border-radius:2px;margin:1rem 0 2rem}
+
+/* ── FOOTER ── */
+footer{
+border-top:1px solid rgba(255,255,255,.07);
+padding:2.5rem 2rem;text-align:center;
+color:#64748B;font-size:.85rem;
+}
+footer .footer-brand{
+font-family:'Outfit',sans-serif;font-weight:700;
+background:linear-gradient(135deg,#67E8F9,#C4B5FD);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+font-size:1.1rem;margin-bottom:.75rem;
+}
+
+/* ── PARENT COMM ── */
+.comm-card{
+background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(79,70,229,.06));
+border:1px solid rgba(6,182,212,.2);border-radius:24px;padding:3rem;
+}
+.comm-item{display:flex;gap:1rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.comm-item:last-child{border-bottom:none}
+.comm-dot{width:8px;height:8px;border-radius:50%;background:#67E8F9;flex-shrink:0;margin-top:.4rem}
+.comm-item p{color:#CBD5E1;font-size:.9rem;line-height:1.6}
+
+/* ── PHILOSOPHY ── */
+.phil-card{
+background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(79,70,229,.06));
+border:1px solid rgba(196,181,253,.15);border-radius:24px;padding:2.5rem;text-align:center;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+.nav-links,.nav-cta-desktop{display:none}
+.hamburger{display:flex}
+.hero-inner{grid-template-columns:1fr;gap:3rem}
+.hero-visual{display:none}
+.hero{padding:6rem 1.5rem 4rem}
+section{padding:3.5rem 1.25rem}
+.cta-section{margin:0 1rem;padding:3.5rem 1.5rem}
+.steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+.steps{grid-template-columns:1fr}
+.hero-btns{flex-direction:column}
+.hero-btns .btn-primary,.hero-btns .btn-outline{text-align:center}
+}
+
+/* ── PROGRAMS PAGE DETAIL ── */
+.track-detail{
+background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+border-radius:24px;padding:2.5rem;margin-bottom:2rem;
+}
+.track-detail h2{font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+.track-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
+.track-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:1.5rem}
+.track-box{background:rgba(255,255,255,.04);border-radius:16px;padding:1.25rem}
+.track-box h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7C3AED;margin-bottom:.75rem}
+.track-box ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.track-box ul li{font-size:.85rem;color:#94A3B8;padding-left:.75rem;position:relative}
+.track-box ul li::before{content:'→';position:absolute;left:0;color:#4F46E5}
+.milestone-list{display:flex;flex-direction:column;gap:.5rem}
+.milestone-item{
+display:flex;align-items:center;gap:.75rem;
+background:rgba(255,255,255,.04);border-radius:10px;padding:.6rem 1rem;
+font-size:.85rem;color:#CBD5E1;
+}
+.milestone-item::before{content:'🎯';font-size:.8rem}
+
+/* ── ABOUT PAGE ── */
+.about-hero{
+background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(124,58,237,.08));
+border:1px solid rgba(79,70,229,.2);border-radius:28px;padding:3rem;
+display:flex;gap:3rem;align-items:flex-start;flex-wrap:wrap;
+}
+.about-avatar{
+width:140px;height:140px;border-radius:50%;flex-shrink:0;
+background:linear-gradient(135deg,#4F46E5,#7C3AED);
+display:flex;align-items:center;justify-content:center;
+font-family:'Outfit',sans-serif;font-size:3.5rem;font-weight:700;color:#fff;
+}
+.about-text h2{font-size:1.8rem;font-weight:700;margin-bottom:.25rem}
+.about-text .about-role{color:#C4B5FD;font-size:1rem;margin-bottom:1rem}
+.about-text p{color:#CBD5E1;line-height:1.75;max-width:600px}
+
+/* ── STAR GLOW PULSE ── */
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.glow-pulse{animation:pulse 3s ease-in-out infinite}
+
+/* ── SCROLL FADE ── */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand" onclick="navigate('home')">Azzab Coding School</div>
+  <ul class="nav-links">
+    <li><a onclick="navigate('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="navigate('programs')" id="nav-programs">Programs</a></li>
+    <li><a onclick="navigate('about')" id="nav-about">About</a></li>
+    <li><a onclick="navigate('enrollment')" id="nav-enrollment">Enrollment</a></li>
+    <li><a onclick="navigate('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta nav-cta-desktop" onclick="navigate('enrollment')">Book a Free Consultation</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a onclick="navigate('home');toggleMenu()">Home</a>
+  <a onclick="navigate('programs');toggleMenu()">Programs</a>
+  <a onclick="navigate('about');toggleMenu()">About</a>
+  <a onclick="navigate('enrollment');toggleMenu()">Enrollment</a>
+  <a onclick="navigate('contact');toggleMenu()">Contact</a>
+  <button class="btn-primary" onclick="navigate('enrollment');toggleMenu()">Book a Free Consultation</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">✦ Now Enrolling — Limited Spots</div>
+        <h1>Building Future<br><span class="grad-text">Creators</span><br>Through Technology</h1>
+        <p>Personalized coding and technology education helping kids build future-ready skills through creative, project-based learning.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="navigate('enrollment')">Book a Free Consultation</button>
+          <button class="btn-outline" onclick="navigate('programs')">Explore Programs</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-screen">
+          <div class="screen-bar">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          </div>
+          <div class="code-line"><span class="cl-purple">class</span> <span class="cl-cyan">Student</span><span class="cl-white">:</span></div>
+          <div class="code-line">&nbsp;&nbsp;<span class="cl-purple">def</span> <span class="cl-cyan">__init__</span><span class="cl-white">(self, name):</span></div>
+          <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cl-white">self.name = name</span></div>
+          <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cl-white">self.skills = []</span></div>
+          <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cl-white">self.projects = </span><span class="cl-orange">0</span></div>
+          <div class="code-line">&nbsp;</div>
+          <div class="code-line">&nbsp;&nbsp;<span class="cl-purple">def</span> <span class="cl-cyan">learn</span><span class="cl-white">(self, skill):</span></div>
+          <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cl-white">self.skills.</span><span class="cl-cyan">append</span><span class="cl-white">(skill)</span></div>
+          <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cl-green">print</span><span class="cl-white">(</span><span class="cl-orange">"Level up! 🚀"</span><span class="cl-white">)</span></div>
+          <div class="code-line">&nbsp;</div>
+          <div class="code-line"><span class="cl-gray"># Your child's story starts here</span></div>
+          <div class="code-line"><span class="cl-white">student = </span><span class="cl-cyan">Student</span><span class="cl-white">(</span><span class="cl-orange">"Future Creator"</span><span class="cl-white">)</span></div>
+        </div>
+        <div class="floating-tag tag1">✦ Project-based</div>
+        <div class="floating-tag tag2">★ Personalized Plans</div>
+        <div class="floating-tag tag3">⬡ Ages 4–16+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY AZZAB -->
+  <section style="background:rgba(255,255,255,.02)">
+    <div class="container fade-in">
+      <div style="text-align:center;margin-bottom:3.5rem">
+        <div class="section-label">✦ Why Choose Us</div>
+        <h2 class="section-title">A <span class="grad-text">smarter way</span> to learn technology</h2>
+        <p class="section-sub" style="margin:0 auto">Every child learns differently. Azzab Coding School builds a personalized path that grows with your child.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon" style="background:linear-gradient(135deg,rgba(79,70,229,.3),rgba(79,70,229,.1))">🎯</div>
+          <h3>Personalized Learning Plans</h3>
+          <p>No cookie-cutter curricula. Every student gets a custom path built around their age, interests, experience, and goals.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.3),rgba(6,182,212,.1))">⚡</div>
+          <h3>Future-Ready Skills</h3>
+          <p>From coding and web design to game development — students build real, marketable skills that open doors for life.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(124,58,237,.1))">🛠️</div>
+          <h3>Project-Based Learning</h3>
+          <p>Kids learn by building. Games, websites, animations, and apps — every lesson ends with something they made and are proud of.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:linear-gradient(135deg,rgba(134,239,172,.2),rgba(134,239,172,.05))">📈</div>
+          <h3>Milestone-Based Progression</h3>
+          <p>Structured levels keep students motivated with visible progress. Parents receive updates after every session.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:linear-gradient(135deg,rgba(250,163,114,.2),rgba(250,163,114,.05))">🌐</div>
+          <h3>In-Person & Online Options</h3>
+          <p>Learn at home, a local library, community space, or online — flexible arrangements built around your family's schedule.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:linear-gradient(135deg,rgba(196,181,253,.2),rgba(196,181,253,.05))">🤝</div>
+          <h3>1-on-1 Instruction</h3>
+          <p>Every session is fully dedicated to your child. No classes, no distractions — just focused, high-quality teaching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS PREVIEW -->
+  <section>
+    <div class="container fade-in">
+      <div style="margin-bottom:3rem">
+        <div class="section-label">✦ Learning Tracks</div>
+        <h2 class="section-title">Programs designed for <span class="grad-text">every stage</span></h2>
+        <p class="section-sub">Four thoughtfully crafted tracks that grow with your child from curious beginner to confident creator.</p>
+      </div>
+      <div class="grid-2">
+        <div class="prog-card prog-a">
+          <span class="prog-age">Ages 4–7</span>
+          <h3>Computer Foundations</h3>
+          <p class="prog-focus">Mouse & keyboard skills, digital literacy, typing basics, internet safety, and beginner logic.</p>
+          <div class="prog-tags">
+            <span class="prog-tag">Digital Literacy</span>
+            <span class="prog-tag">Typing</span>
+            <span class="prog-tag">Logic</span>
+            <span class="prog-tag">Safety</span>
+          </div>
+        </div>
+        <div class="prog-card prog-b">
+          <span class="prog-age">Ages 7–10</span>
+          <h3>Creative Coding</h3>
+          <p class="prog-focus">Scratch, animations, storytelling, simple games, loops, events, and creative problem-solving.</p>
+          <div class="prog-tags">
+            <span class="prog-tag">Scratch</span>
+            <span class="prog-tag">Animations</span>
+            <span class="prog-tag">Games</span>
+            <span class="prog-tag">Storytelling</span>
+          </div>
+        </div>
+        <div class="prog-card prog-c">
+          <span class="prog-age">Ages 10+</span>
+          <h3>Web Design</h3>
+          <p class="prog-focus">HTML, CSS, beginner JavaScript — build personal websites and interactive pages from scratch.</p>
+          <div class="prog-tags">
+            <span class="prog-tag">HTML</span>
+            <span class="prog-tag">CSS</span>
+            <span class="prog-tag">JavaScript</span>
+            <span class="prog-tag">Design</span>
+          </div>
+        </div>
+        <div class="prog-card prog-d">
+          <span class="prog-age">Ages 10+</span>
+          <h3>Game Development</h3>
+          <p class="prog-focus">Python, Lua, C#, JavaScript — game mechanics, beginner scripting, and interactive projects.</p>
+          <div class="prog-tags">
+            <span class="prog-tag">Python</span>
+            <span class="prog-tag">Lua</span>
+            <span class="prog-tag">C#</span>
+            <span class="prog-tag">Game Design</span>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <button class="btn-outline" onclick="navigate('programs')">View Full Program Details →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW LEARNING WORKS -->
+  <section style="background:rgba(255,255,255,.02)">
+    <div class="container fade-in">
+      <div style="text-align:center;margin-bottom:3.5rem">
+        <div class="section-label">✦ The Process</div>
+        <h2 class="section-title">How <span class="grad-text">learning works</span></h2>
+        <p class="section-sub" style="margin:0 auto">A simple, structured journey from first conversation to confident creator.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Interest Form</h3>
+          <p>Share your child's age, interests, goals, experience level, schedule, and preferred weekly plan — all in one quick form.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Personalized Plan</h3>
+          <p>A custom learning path is built around your child's goals and experience level, ready before the first session.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Weekly Learning</h3>
+          <p>Students meet weekly on a reserved schedule with flexible adjustments for vacations, school events, and life.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Milestone Growth</h3>
+          <p>Students progress through levels, complete real projects, and parents receive warm session summaries throughout.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section>
+    <div class="container fade-in">
+      <div style="text-align:center;margin-bottom:1rem">
+        <div class="section-label">✦ Weekly Plans</div>
+        <h2 class="section-title">Simple, transparent <span class="grad-text">tuition</span></h2>
+        <p class="section-sub" style="margin:0 auto;margin-bottom:.75rem">Founding launch pricing — month-to-month, no long-term commitments required.</p>
+        <p style="font-size:.85rem;color:#64748B">Travel included within local radius · Possible travel fee for longer distances</p>
+      </div>
+      <div class="pricing-cards">
+        <div class="price-card">
+          <div class="price-plan">Starter</div>
+          <div class="price-amount">$150<span>/mo</span></div>
+          <div class="price-per">1 Hour Per Week</div>
+          <ul class="price-features">
+            <li>Personalized curriculum</li>
+            <li>Lesson summaries</li>
+            <li>Project-based learning</li>
+            <li>Milestone tracking</li>
+            <li>Flexible scheduling</li>
+            <li>Hybrid / in-person options</li>
+          </ul>
+          <button class="btn-outline" onclick="navigate('enrollment')" style="width:100%;border-radius:12px;padding:.75rem">Get Started</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">Most Popular</div>
+          <div class="price-plan">Growth</div>
+          <div class="price-amount">$280<span>/mo</span></div>
+          <div class="price-per">2 Hours Per Week</div>
+          <ul class="price-features">
+            <li>Personalized curriculum</li>
+            <li>Lesson summaries</li>
+            <li>Project-based learning</li>
+            <li>Milestone tracking</li>
+            <li>Flexible scheduling</li>
+            <li>Hybrid / in-person options</li>
+          </ul>
+          <button class="btn-primary" onclick="navigate('enrollment')" style="width:100%;border-radius:12px;padding:.75rem">Get Started</button>
+        </div>
+        <div class="price-card">
+          <div class="price-plan">Accelerated</div>
+          <div class="price-amount">$400<span>/mo</span></div>
+          <div class="price-per">3 Hours Per Week</div>
+          <ul class="price-features">
+            <li>Personalized curriculum</li>
+            <li>Lesson summaries</li>
+            <li>Project-based learning</li>
+            <li>Milestone tracking</li>
+            <li>Flexible scheduling</li>
+            <li>Hybrid / in-person options</li>
+          </ul>
+          <button class="btn-outline" onclick="navigate('enrollment')" style="width:100%;border-radius:12px;padding:.75rem">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARENT COMMUNICATION -->
+  <section style="background:rgba(255,255,255,.02)">
+    <div class="container fade-in">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:center">
+        <div>
+          <div class="section-label">✦ Parent Updates</div>
+          <h2 class="section-title">You'll always <span class="grad-text">know what happened</span></h2>
+          <div class="divider"></div>
+          <p style="color:#CBD5E1;line-height:1.75;margin-bottom:1.5rem">After every session, you receive a warm, structured lesson summary — not just a check-in, but a real window into your child's progress.</p>
+          <button class="btn-outline" onclick="navigate('enrollment')">Start the Conversation</button>
+        </div>
+        <div class="comm-card">
+          <p style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#67E8F9;margin-bottom:1.25rem">Each Summary Includes</p>
+          <div class="comm-item"><div class="comm-dot"></div><p><strong style="color:#F8FAFC">What was learned</strong> — concepts covered and skills practiced</p></div>
+          <div class="comm-item"><div class="comm-dot"></div><p><strong style="color:#F8FAFC">What was built</strong> — the actual project or output from the session</p></div>
+          <div class="comm-item"><div class="comm-dot"></div><p><strong style="color:#F8FAFC">Strengths observed</strong> — what clicked and where your child shines</p></div>
+          <div class="comm-item"><div class="comm-dot"></div><p><strong style="color:#F8FAFC">Challenges noted</strong> — areas to revisit with supportive framing</p></div>
+          <div class="comm-item"><div class="comm-dot"></div><p><strong style="color:#F8FAFC">Next goals</strong> — what's planned for the upcoming session</p></div>
+          <div class="comm-item"><div class="comm-dot"></div><p><strong style="color:#F8FAFC">Optional creative practice</strong> — light ideas if they want to explore more</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="padding:5rem 2rem">
+    <div class="cta-section">
+      <div class="section-label" style="justify-content:center">✦ Get Started</div>
+      <h2>Ready to help your child build future-ready technology skills?</h2>
+      <p>Book a free 10–15 minute consultation. No pressure, just a conversation about your child's goals.</p>
+      <button class="btn-primary" onclick="navigate('enrollment')" style="font-size:1rem;padding:1rem 2.5rem">Book a Free Consultation</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">Azzab Coding School</div>
+    <p>Building Future Creators Through Technology</p>
+    <p style="margin-top:.5rem">© 2025 Azzab Coding School. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: PROGRAMS
+══════════════════════════════════════════ -->
+<div class="page" id="page-programs">
+  <section>
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3.5rem">
+        <div class="section-label">✦ Learning Tracks</div>
+        <h2 class="section-title">Four tracks. One <span class="grad-text">personalized path</span>.</h2>
+        <p class="section-sub" style="margin:0 auto">Each track is thoughtfully structured with age-appropriate tools, real projects, and clear milestones — designed to grow with your child.</p>
+      </div>
+
+      <!-- TRACK A -->
+      <div class="track-detail">
+        <div class="track-meta">
+          <span class="prog-age prog-a" style="background:rgba(6,182,212,.2);color:#67E8F9;border-radius:999px;padding:.3rem .85rem;font-size:.75rem;font-weight:700">Ages 4–7</span>
+          <h2>Computer Foundations</h2>
+        </div>
+        <p style="color:#CBD5E1;line-height:1.75;margin-bottom:1.5rem">The perfect starting point for young learners. Students build real comfort and confidence with technology — from navigating a computer to understanding how the digital world works. Lessons are patient, visual, and playful.</p>
+        <div class="track-grid">
+          <div class="track-box">
+            <h4>Skills Learned</h4>
+            <ul>
+              <li>Mouse & keyboard confidence</li>
+              <li>Typing fundamentals</li>
+              <li>Computer navigation</li>
+              <li>Digital creativity</li>
+              <li>Beginner logic thinking</li>
+              <li>Internet safety basics</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Tools Used</h4>
+            <ul>
+              <li>Typing games & apps</li>
+              <li>Kid-friendly browsers</li>
+              <li>Digital drawing tools</li>
+              <li>Basic file management</li>
+              <li>Storytelling apps</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Example Projects</h4>
+            <ul>
+              <li>Digital storybook</li>
+              <li>Typing speed challenge</li>
+              <li>Safe browsing exercise</li>
+              <li>Creative digital art piece</li>
+              <li>Folder organization system</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Milestone Progression</h4>
+            <div class="milestone-list">
+              <div class="milestone-item">Mouse & keyboard mastery</div>
+              <div class="milestone-item">Typing speed benchmark</div>
+              <div class="milestone-item">Navigation independence</div>
+              <div class="milestone-item">Digital safety certification</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACK B -->
+      <div class="track-detail">
+        <div class="track-meta">
+          <span style="background:rgba(196,181,253,.2);color:#C4B5FD;border-radius:999px;padding:.3rem .85rem;font-size:.75rem;font-weight:700">Ages 7–10</span>
+          <h2>Creative Coding</h2>
+        </div>
+        <p style="color:#CBD5E1;line-height:1.75;margin-bottom:1.5rem">Where coding meets creativity. Students discover the joy of programming through Scratch — building animations, interactive stories, and their first real games. Core programming concepts are introduced through hands-on creating.</p>
+        <div class="track-grid">
+          <div class="track-box">
+            <h4>Skills Learned</h4>
+            <ul>
+              <li>Sequencing & loops</li>
+              <li>Events & conditionals</li>
+              <li>Animation principles</li>
+              <li>Game mechanics basics</li>
+              <li>Creative storytelling</li>
+              <li>Problem decomposition</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Tools Used</h4>
+            <ul>
+              <li>Scratch (MIT)</li>
+              <li>Scratch Jr (entry)</li>
+              <li>Code.org activities</li>
+              <li>Simple game builders</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Example Projects</h4>
+            <ul>
+              <li>Animated adventure story</li>
+              <li>Catch the falling stars game</li>
+              <li>Interactive greeting card</li>
+              <li>Maze escape challenge</li>
+              <li>Custom music visualizer</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Milestone Progression</h4>
+            <div class="milestone-list">
+              <div class="milestone-item">First Scratch animation</div>
+              <div class="milestone-item">Interactive story complete</div>
+              <div class="milestone-item">First playable game</div>
+              <div class="milestone-item">Multi-scene project</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACK C -->
+      <div class="track-detail">
+        <div class="track-meta">
+          <span style="background:rgba(79,70,229,.2);color:#a5b4fc;border-radius:999px;padding:.3rem .85rem;font-size:.75rem;font-weight:700">Ages 10+</span>
+          <h2>Web Design</h2>
+        </div>
+        <p style="color:#CBD5E1;line-height:1.75;margin-bottom:1.5rem">Students step into real-world web development — learning the languages every website is built with. By the end, they'll have a personal website they built themselves, from scratch, with their own design choices.</p>
+        <div class="track-grid">
+          <div class="track-box">
+            <h4>Skills Learned</h4>
+            <ul>
+              <li>HTML structure & elements</li>
+              <li>CSS styling & layouts</li>
+              <li>Responsive design basics</li>
+              <li>Beginner JavaScript</li>
+              <li>UI design principles</li>
+              <li>Publishing a website</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Tools Used</h4>
+            <ul>
+              <li>HTML & CSS</li>
+              <li>JavaScript (vanilla)</li>
+              <li>VS Code editor</li>
+              <li>GitHub Pages</li>
+              <li>Chrome DevTools</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Example Projects</h4>
+            <ul>
+              <li>Personal portfolio page</li>
+              <li>Hobby or interest site</li>
+              <li>Interactive quiz page</li>
+              <li>Photo gallery layout</li>
+              <li>Animated landing page</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Milestone Progression</h4>
+            <div class="milestone-list">
+              <div class="milestone-item">First HTML page built</div>
+              <div class="milestone-item">Styled multi-page site</div>
+              <div class="milestone-item">JS interactivity added</div>
+              <div class="milestone-item">Live published website</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACK D -->
+      <div class="track-detail">
+        <div class="track-meta">
+          <span style="background:rgba(134,239,172,.15);color:#86efac;border-radius:999px;padding:.3rem .85rem;font-size:.75rem;font-weight:700">Ages 10+</span>
+          <h2>Game Development</h2>
+        </div>
+        <p style="color:#CBD5E1;line-height:1.75;margin-bottom:1.5rem">For students who love games and want to build them. Students learn programming through the lens of game design — creating mechanics, scripting behaviors, and shipping playable interactive projects they can share with friends and family.</p>
+        <div class="track-grid">
+          <div class="track-box">
+            <h4>Skills Learned</h4>
+            <ul>
+              <li>Game design fundamentals</li>
+              <li>Python scripting</li>
+              <li>Lua (Roblox Studio)</li>
+              <li>C# basics (Unity)</li>
+              <li>Game mechanics logic</li>
+              <li>Debugging & testing</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Tools Used</h4>
+            <ul>
+              <li>Python / Pygame</li>
+              <li>Roblox Studio (Lua)</li>
+              <li>Unity basics (C#)</li>
+              <li>JavaScript + Canvas</li>
+              <li>Game design docs</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Example Projects</h4>
+            <ul>
+              <li>Top-down adventure game</li>
+              <li>Roblox obstacle course</li>
+              <li>Platformer with levels</li>
+              <li>Puzzle game challenge</li>
+              <li>Multiplayer mini-game</li>
+            </ul>
+          </div>
+          <div class="track-box">
+            <h4>Milestone Progression</h4>
+            <div class="milestone-list">
+              <div class="milestone-item">First playable prototype</div>
+              <div class="milestone-item">Scripted game mechanic</div>
+              <div class="milestone-item">Multi-level game complete</div>
+              <div class="milestone-item">Shareable published game</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem">
+        <button class="btn-primary" onclick="navigate('enrollment')" style="font-size:1rem;padding:1rem 2.5rem">Book a Free Consultation</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-brand">Azzab Coding School</div>
+    <p>© 2025 Azzab Coding School. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: ABOUT
+══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section>
+    <div class="container">
+      <div class="about-hero" style="margin-bottom:3rem">
+        <div class="about-avatar">FA</div>
+        <div class="about-text">
+          <h2>Fatma Azzab</h2>
+          <p class="about-role">Founder & Instructor · Azzab Coding School</p>
+          <div class="divider"></div>
+          <p>I started Azzab Coding School because I believe every child deserves access to patient, personalized technology education — and I've seen firsthand what happens when kids are truly supported and challenged in the right way. They surprise you. They surprise themselves.</p>
+          <br>
+          <p>I'm a Computer Science student at the University of Wisconsin–Madison, and I've spent years teaching coding, tutoring academics, working in childcare, and leading STEAM education programs. The through-line in all of it: <em style="color:#C4B5FD">kids learn best when they build, create, and solve real problems.</em></p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem;margin-bottom:3rem">
+        <div>
+          <div class="section-label">✦ Experience</div>
+          <h3 style="font-size:1.4rem;font-weight:700;margin-bottom:1.5rem">Where I've worked and taught</h3>
+          <div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <span class="exp-tag">Coding Education</span>
+                <h4>Code Ninjas</h4>
+                <p>Taught structured coding curricula to students of multiple ages in a hands-on, project-based environment.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <span class="exp-tag">Academic Tutoring</span>
+                <h4>Kumon</h4>
+                <p>Guided students through structured, self-paced academic programs with consistent progress tracking.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <span class="exp-tag">STEAM Education</span>
+                <h4>Jamarek Xel-Xeeli STEAM Academy</h4>
+                <p>Led technology and science education sessions designed to spark curiosity and creative problem-solving in young learners.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <span class="exp-tag">Online Tutoring</span>
+                <h4>UPchieve</h4>
+                <p>Provided free, on-demand tutoring to underserved students across the US, focusing on math and science subjects.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <span class="exp-tag">Childcare</span>
+                <h4>Childcare Experience</h4>
+                <p>Years of childcare experience that shaped an understanding of child development, patience, and relationship-building with kids and families.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">✦ Philosophy</div>
+          <h3 style="font-size:1.4rem;font-weight:700;margin-bottom:1.5rem">How I think about teaching</h3>
+          <div class="phil-card" style="margin-bottom:1.5rem">
+            <p style="font-size:1.25rem;font-style:italic;color:#C4B5FD;line-height:1.6;margin-bottom:1rem">"Kids learn best when they build, create, solve problems, and gain confidence through structured support."</p>
+            <p style="color:#94A3B8;font-size:.9rem">— Teaching philosophy at Azzab Coding School</p>
+          </div>
+          <div class="card" style="margin-bottom:1rem">
+            <h3 style="font-size:1rem">Student-Centered Always</h3>
+            <p>Sessions are led by what the student needs that day — not a rigid script. Curiosity is encouraged. Questions are celebrated.</p>
+          </div>
+          <div class="card" style="margin-bottom:1rem">
+            <h3 style="font-size:1rem">Structured but Flexible</h3>
+            <p>There's a clear path and clear milestones — but the journey is personalized. No two students move through a program the same way.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem">Parent Partnership</h3>
+            <p>Parents are kept fully in the loop. Warm, detailed summaries after every session mean you're never wondering what happened.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center">
+        <button class="btn-primary" onclick="navigate('enrollment')" style="font-size:1rem;padding:1rem 2.5rem">Book a Free Consultation</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-brand">Azzab Coding School</div>
+    <p>© 2025 Azzab Coding School. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: ENROLLMENT
+══════════════════════════════════════════ -->
+<div class="page" id="page-enrollment">
+  <section>
+    <div class="container">
+      <div style="max-width:760px;margin:0 auto">
+        <div class="section-label">✦ Enrollment</div>
+        <h2 class="section-title">Let's find the <span class="grad-text">right fit</span> for your child</h2>
+        <p style="color:#CBD5E1;margin-bottom:2.5rem;line-height:1.75">Start by filling out this interest form. Once submitted, we'll schedule a free 10–15 minute consultation to learn more about your child's goals and answer any questions you have. No commitment required.</p>
+
+        <!-- ENROLLMENT INFO CARDS -->
+        <div class="grid-2" style="margin-bottom:3rem">
+          <div class="card" style="padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">📅</div>
+            <h3 style="font-size:1rem">Month-to-Month</h3>
+            <p>No long-term contracts. Enroll for a month at a time with flexible cancellation.</p>
+          </div>
+          <div class="card" style="padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">🗓️</div>
+            <h3 style="font-size:1rem">Reserved Weekly Slot</h3>
+            <p>Your child gets a consistent weekly time slot — making learning a dependable routine.</p>
+          </div>
+          <div class="card" style="padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">🏠</div>
+            <h3 style="font-size:1rem">Location Flexible</h3>
+            <p>In-person at your home, a local library, community space, or online via video call.</p>
+          </div>
+          <div class="card" style="padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">🎓</div>
+            <h3 style="font-size:1rem">Free Consultation</h3>
+            <p>A 10–15 min call to discuss your child's goals before any commitment is made.</p>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:2.5rem">
+          <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:2rem">Interest Form</h3>
+          <form action="https://formspree.io/f/mojbnvba" method="POST">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Parent / Guardian Name *</label>
+              <input type="text" name="parent_name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="(555) 000-0000">
+            </div>
+            <div class="form-group">
+              <label>Student Name *</label>
+              <input type="text" name="student_name" placeholder="Your child's first name" required>
+            </div>
+            <div class="form-group">
+              <label>Student Age *</label>
+              <select name="student_age" required>
+                <option value="" disabled selected>Select age</option>
+                <option>4</option><option>5</option><option>6</option><option>7</option>
+                <option>8</option><option>9</option><option>10</option><option>11</option>
+                <option>12</option><option>13</option><option>14</option><option>15</option>
+                <option>16+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Experience Level</label>
+              <select name="experience_level">
+                <option value="" disabled selected>Select level</option>
+                <option>No experience — complete beginner</option>
+                <option>Some exposure — tried a few things</option>
+                <option>Some experience — knows basics</option>
+                <option>Intermediate — has built projects</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Track Interest</label>
+              <select name="track_interest">
+                <option value="" disabled selected>Select a track</option>
+                <option>Computer Foundations (Ages 4–7)</option>
+                <option>Creative Coding (Ages 7–10)</option>
+                <option>Web Design (Ages 10+)</option>
+                <option>Game Development (Ages 10+)</option>
+                <option>Not sure — help me decide</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Weekly Plan Interest</label>
+              <select name="weekly_plan">
+                <option value="" disabled selected>Select a plan</option>
+                <option>1 Hour/Week — $150/month</option>
+                <option>2 Hours/Week — $280/month</option>
+                <option>3 Hours/Week — $400/month</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Preferred Days / Times</label>
+<input type="text" name="preferred_times" placeholder="e.g. Weekday afternoons, Saturday mornings">            </div>
+            <div class="form-group">
+              <label>Learning Preference</label>
+              <select name="learning_preference">
+                <option value="" disabled selected>Select preference</option>
+                <option>In-person (at home)</option>
+                <option>In-person (library or community space)</option>
+                <option>Online / remote</option>
+                <option>No preference — flexible</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>What does your child love or enjoy?</label>
+             <input type="text" name="child_interests" placeholder="Games, art, Minecraft, YouTube, building things...">
+            </div>
+            <div class="form-group full">
+              <label>What are your goals for your child?</label>
+              <textarea name="goals" placeholder="What do you hope your child learns or gains from this experience?"></textarea>
+            </div>
+            <div class="form-group full">
+              <label>Anything else we should know?</label>
+              <textarea name="additional_notes" placeholder="Learning styles, schedules, concerns, questions — anything helpful"></textarea>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem">
+            <button type="submit" class="form-submit">Submit Interest Form →</button>
+          </div>
+          </form>
+        </div>
+
+        <div id="confirmMsg" style="display:none;background:linear-gradient(135deg,rgba(6,182,212,.15),rgba(79,70,229,.1));border:1px solid rgba(6,182,212,.3);border-radius:20px;padding:2rem;margin-top:1.5rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:.75rem">🎉</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:.5rem">Thank you!</h3>
+          <p style="color:#CBD5E1">Your interest form has been received. We'll be in touch within 24–48 hours to schedule your free consultation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-brand">Azzab Coding School</div>
+    <p>© 2025 Azzab Coding School. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: CONTACT
+══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section>
+    <div class="container">
+      <div style="max-width:700px;margin:0 auto">
+        <div class="section-label">✦ Contact</div>
+        <h2 class="section-title">Let's <span class="grad-text">connect</span></h2>
+        <p style="color:#CBD5E1;margin-bottom:3rem;line-height:1.75">Have a question? Want to learn more before filling out the interest form? We'd love to hear from you.</p>
+
+        <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:3rem">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <h4>Email</h4>
+              <p>hello@azzabcodingschool.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <h4>Phone / Text</h4>
+              <p>(555) 000-0000 — text or call, responses within 24 hours</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Service Area</h4>
+              <p>Greater Madison, WI area — in-person within a local radius. Travel fees may apply for longer distances. Online sessions available anywhere.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-section" style="margin:0;border-radius:24px">
+          <h2 style="font-size:1.6rem">Ready to get started?</h2>
+          <p>Book a free 10–15 minute consultation — no commitment, just a conversation.</p>
+          <button class="btn-primary" onclick="navigate('enrollment')" style="font-size:1rem;padding:1rem 2.5rem">Book a Free Consultation</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-brand">Azzab Coding School</div>
+    <p>© 2025 Azzab Coding School. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+const pages = ['home','programs','about','enrollment','contact'];
+
+function navigate(page) {
+  pages.forEach(p => {
+    document.getElementById('page-'+p).classList.remove('active');
+    const link = document.getElementById('nav-'+p);
+    if(link) link.classList.remove('active');
+  });
+  document.getElementById('page-'+page).classList.add('active');
+  const activeLink = document.getElementById('nav-'+page);
+  if(activeLink) activeLink.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  observeFades();
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  observeFades();
+});
+
+function observeFades() {
+  document.querySelectorAll('.page.active .fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 60) el.classList.add('visible');
+  });
+}
+
+function showConfirm() {
+  document.getElementById('confirmMsg').style.display = 'block';
+  document.getElementById('confirmMsg').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+setTimeout(observeFades, 100);
+</script>
+</body>
+</html>
